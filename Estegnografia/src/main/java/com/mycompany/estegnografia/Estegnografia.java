@@ -16,7 +16,7 @@ Cesare Crosara Cardoso - 834252
 */
 
 public class Estegnografia {
-    public static String encodeMessage(String imagePath, String message) {
+    public static String encodeMessage(String userName, String imagePath, String message) {
         try {
             // Abre a imagem
             BufferedImage image = ImageIO.read(new File(imagePath));
@@ -55,8 +55,8 @@ public class Estegnografia {
             }
             
             // Salva a imagem codificada
-            String encodedImagePath = "C:/Users/marco/Downloads/imagem_codificada.jpg";
-            ImageIO.write(image, "jpg", new File(encodedImagePath));
+            String encodedImagePath = "C:/Users/" + userName + "/Downloads/imagem_codificada.bmp";
+            ImageIO.write(image, "bmp", new File(encodedImagePath));
 
             System.out.println("Mensagem codificada com sucesso.");
 
@@ -136,11 +136,12 @@ public class Estegnografia {
 
 
     public static void main(String[] args) throws IOException {
-        String imagePath = "C:/Users/marco/Downloads/imagem.jpg";
+        String userName = System.getProperty("user.name");
+        String imagePath = "C:/Users/" + userName + "/Downloads/imagem.jpg";
         Scanner myObj = new Scanner(System.in);  // Create a Scanner object
         System.out.println("Escreva uma mensagem para ser codificada na imagem: ");
         String message = myObj.nextLine();
-        String encodedImagePath = encodeMessage(imagePath, message);
+        String encodedImagePath = encodeMessage(userName, imagePath, message);
         if(encodedImagePath == null){
             System.out.println("Ocorreu um erro!");
         }
